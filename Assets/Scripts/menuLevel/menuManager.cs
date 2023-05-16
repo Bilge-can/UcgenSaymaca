@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class menuManager : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class menuManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void StartGameLevel()
+    {
+        SceneManager.LoadScene("gameLevel");
     }
     
 }
