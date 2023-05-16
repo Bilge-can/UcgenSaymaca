@@ -1,4 +1,29 @@
 ﻿<Properties StartupConfiguration="{C3239AD7-8E98-D440-11C8-67A934744525}|">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="a515117d-9bc9-4845-b83b-4d938233b541" />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/menuLevel/menuManager.cs">
+    <Files>
+      <File FileName="Assets/Scripts/menuLevel/menuManager.cs" Line="4" Column="1" />
+      <File FileName=".gitignore" Line="3" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="UcgenSaymacaRepo" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="menuLevel" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="Packages" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
