@@ -15,8 +15,13 @@ public class GameManager : MonoBehaviour
 
     private GameObject[] karelerDizisi = new GameObject[25];
 
+    [SerializeField]
+    private Transform soruPaneli;
+
     void Start()
     {
+        soruPaneli.GetComponent<RectTransform>().localScale = Vector3.zero;
+
         kareleriOlustur();
         
     }
@@ -33,6 +38,8 @@ public class GameManager : MonoBehaviour
         BolumDegerleriniTexteYazdir();
 
         StartCoroutine(DoFadeRoutine());
+
+        Invoke("SoruPaneliniAc",2f);
         
     }
 
@@ -56,5 +63,10 @@ public class GameManager : MonoBehaviour
            
             kare.transform.GetChild(0).GetComponent<Text>().text = rastgeleDeger.ToString();
         }
+    }
+
+    void SoruPaneliniAc()
+    {
+        soruPaneli.GetComponent<RectTransform>().DOScale(1, 0.3f).SetEase(Ease.OutBack);
     }
 }
