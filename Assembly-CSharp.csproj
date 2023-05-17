@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets/Scripts/menuLevel/menuManager.cs" />
     <Compile Include="Assets/Scripts/gameLevel/alphaPanelManager.cs" />
+    <Compile Include="Assets/Scripts/gameLevel/GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
