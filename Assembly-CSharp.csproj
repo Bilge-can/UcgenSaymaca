@@ -61,6 +61,7 @@
     <Compile Include="Assets/Scripts/GameLevel/GameManager.cs" />
     <Compile Include="Assets/Scripts/GameLevel/KalanHaklarManager.cs" />
     <Compile Include="Assets/Scripts/GameLevel/PuanManager.cs" />
+    <Compile Include="Assets/Scripts/GameLevel/SonucManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

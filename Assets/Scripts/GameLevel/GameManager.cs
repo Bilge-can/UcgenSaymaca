@@ -44,9 +44,14 @@ public class GameManager : MonoBehaviour
 
     GameObject gecerliKare;
 
+    [SerializeField]
+    private GameObject sonucPaneli;
+
     private void Awake()
     {
         kalanHak = 3;
+
+        sonucPaneli.GetComponent<RectTransform>().localScale = Vector3.zero;
 
         KalanHaklarManager = Object.FindObjectOfType<KalanHaklarManager>();
         puanManager = Object.FindObjectOfType<PuanManager>();
@@ -155,8 +160,10 @@ public class GameManager : MonoBehaviour
 
     void OyunBitti()
     {
-        Debug.Log("oyun bitti");
+        butonaBasilsinmi = false;
+        sonucPaneli.GetComponent<RectTransform>().DOScale(1, 0.3f).SetEase(Ease.OutBack);
     }
+
 
     IEnumerator DoFadeRoutine()
     {
