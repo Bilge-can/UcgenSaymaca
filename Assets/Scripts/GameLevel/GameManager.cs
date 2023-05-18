@@ -32,6 +32,24 @@ public class GameManager : MonoBehaviour
     int butonDegeri;
     bool butonaBasilsinmi;
 
+    int kalanHak;
+
+    string sorununZorlukDerecesi;
+
+    KalanHaklarManager KalanHaklarManager;
+
+    PuanManager puanManager;
+
+    private void Awake()
+    {
+        kalanHak = 3;
+
+        KalanHaklarManager = Object.FindObjectOfType<KalanHaklarManager>();
+        puanManager = Object.FindObjectOfType<PuanManager>();
+
+        KalanHaklarManager.KalanHaklariKontrolEt(kalanHak);
+    }
+
     void Start()
     {
         butonaBasilsinmi = false;
@@ -39,7 +57,7 @@ public class GameManager : MonoBehaviour
         soruPaneli.GetComponent<RectTransform>().localScale = Vector3.zero;
 
         kareleriOlustur();
-        //SoruyuSor();
+       
 
     }
 
@@ -70,23 +88,40 @@ public class GameManager : MonoBehaviour
 
             
             SonucuKontrolEt();
-            
+            SorununZorlukDerecesi();
+
+
         }
     }
 
     void SonucuKontrolEt()
     {
-        if (butonDegeri>13)
+        if (13 <= butonDegeri)
         {
-            Debug.Log("Doğru Sonuç");
+            puanManager.PuaniArtir(sorununZorlukDerecesi);
         }
         else 
         {
-            Debug.Log("Yanlış Sonuç");
+            kalanHak--;
+            KalanHaklarManager.KalanHaklariKontrolEt(kalanHak);
         }
     }
 
+    void SorununZorlukDerecesi()
+    {
+        if (butonDegeri > 13 && butonDegeri <= 25)
+        {
+            sorununZorlukDerecesi = "kolay";
+        }else if(butonDegeri > 25 && butonDegeri <= 35)
+        {
+            sorununZorlukDerecesi = "orta";
+        }
+        else
+        {
+            sorununZorlukDerecesi = "zor";
+        }
 
+    }
 
     IEnumerator DoFadeRoutine()
     {
@@ -120,14 +155,7 @@ public class GameManager : MonoBehaviour
         soruPaneli.GetComponent<RectTransform>().DOScale(1, 0.3f).SetEase(Ease.OutBack);
     }
 
-    /*
-    void SoruyuSor()
-    {
-       // kacinciSoru = Random.Range(0, UcgenDegerleriListesi.Count);
-
-        dogruSonuc = UcgenDegerleriListesi[Random.Range(0, UcgenDegerleriListesi.Count)];
-            
-    }*/
+    
 
 
 }
