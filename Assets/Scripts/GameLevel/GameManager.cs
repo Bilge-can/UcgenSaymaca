@@ -47,9 +47,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject sonucPaneli;
 
+    [SerializeField]
+    AudioSource audioSource;
+
+    public AudioClip butonSesi;
+
     private void Awake()
     {
         kalanHak = 3;
+
+        audioSource = GetComponent<AudioSource>();
+
 
         sonucPaneli.GetComponent<RectTransform>().localScale = Vector3.zero;
 
@@ -94,6 +102,8 @@ public class GameManager : MonoBehaviour
     {
         if (butonaBasilsinmi)
         {
+            
+
             butonDegeri = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().text);
 
             gecerliKare = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
@@ -108,6 +118,8 @@ public class GameManager : MonoBehaviour
 
     void SonucuKontrolEt()
     {
+
+        audioSource.PlayOneShot(butonSesi);
         if (13 <= butonDegeri)
         {
             gecerliKare.transform.GetChild(1).GetComponent<Image>().enabled = true;
