@@ -22,13 +22,15 @@ public class GameManager : MonoBehaviour
     private Transform soruPaneli;
 
     [SerializeField]
+    private Sprite[] kareSprites;
+
+    [SerializeField]
     private GameObject soruGameObject;
 
     
     List<int> UcgenDegerleriListesi = new List<int>();
 
-    int kacinciSoru;
-    int dogruSonuc;
+    
     int butonDegeri;
     bool butonaBasilsinmi;
 
@@ -39,6 +41,8 @@ public class GameManager : MonoBehaviour
     KalanHaklarManager KalanHaklarManager;
 
     PuanManager puanManager;
+
+    GameObject gecerliKare;
 
     private void Awake()
     {
@@ -67,6 +71,7 @@ public class GameManager : MonoBehaviour
         for(int i=0; i<25; i++)
         {
             GameObject kare = Instantiate(karePrefab, karelerPanali);
+            kare.transform.GetChild(1).GetComponent<Image>().sprite = kareSprites[Random.Range(0, kareSprites.Length)];
             kare.transform.GetComponent<Button>().onClick.AddListener(() => ButonaBasildi());
             karelerDizisi[i] = kare;
         }
@@ -86,9 +91,11 @@ public class GameManager : MonoBehaviour
         {
             butonDegeri = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().text);
 
-            
-            SonucuKontrolEt();
+            gecerliKare = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+
             SorununZorlukDerecesi();
+            SonucuKontrolEt();
+            
 
 
         }
@@ -98,10 +105,18 @@ public class GameManager : MonoBehaviour
     {
         if (13 <= butonDegeri)
         {
+            gecerliKare.transform.GetChild(1).GetComponent<Image>().enabled = true;
+            gecerliKare.transform.GetChild(0).GetComponent<Text>().text = "";
+            gecerliKare.transform.GetComponent<Button>().interactable = false;
+
             puanManager.PuaniArtir(sorununZorlukDerecesi);
+            
         }
         else 
         {
+            gecerliKare.transform.GetChild(1).GetComponent<Image>().enabled = true;
+            gecerliKare.transform.GetChild(0).GetComponent<Text>().text = "";
+            gecerliKare.transform.GetComponent<Button>().interactable = false;
             kalanHak--;
             KalanHaklarManager.KalanHaklariKontrolEt(kalanHak);
         }
