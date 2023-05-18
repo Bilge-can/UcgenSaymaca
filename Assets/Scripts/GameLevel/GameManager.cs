@@ -24,13 +24,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject soruGameObject;
 
-    [SerializeField]
-    public Image soru; // Unity sahnesinde yerleştirdiğiniz Image bileşeni
-
-    [SerializeField]
-    public Sprite[] imageArray; // Resimleri tutacak dizi
-   
+    
     List<int> UcgenDegerleriListesi = new List<int>();
+
+    int butonDegeri;
 
     void Start()
     {
@@ -46,6 +43,7 @@ public class GameManager : MonoBehaviour
         for(int i=0; i<25; i++)
         {
             GameObject kare = Instantiate(karePrefab, karelerPanali);
+            kare.transform.GetComponent<Button>().onClick.AddListener(() => ButonaBasildi());
             karelerDizisi[i] = kare;
         }
 
@@ -55,13 +53,15 @@ public class GameManager : MonoBehaviour
 
         Invoke("SoruPaneliniAc",2f);
 
-        
-
-        
-        //SoruDizi();
-
 
     }
+
+     void ButonaBasildi()
+    {
+        butonDegeri = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().text);
+        Debug.Log(butonDegeri);
+    }
+
 
     IEnumerator DoFadeRoutine()
     {
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
     {
         foreach(var kare in karelerDizisi)
         {
-            int rastgeleDeger = Random.Range(1,13);
+            int rastgeleDeger = Random.Range(12,35);
 
             UcgenDegerleriListesi.Add(rastgeleDeger);
 
@@ -91,58 +91,11 @@ public class GameManager : MonoBehaviour
 
     void SoruPaneliniAc()
     {
-        SoruyuSor();
+        
         soruPaneli.GetComponent<RectTransform>().DOScale(1, 0.3f).SetEase(Ease.OutBack);
     }
 
-    /*
+    
 
-     public void SoruDizi()
-    {
-        Debug.Log("------------");
-        // Resim dizisini oluşturun ve resimleri atayın
-        imageArray = new Sprite[]
-        {
-            Resources.Load<Sprite>("1.png"), // Resim1, Resources klasöründe bulunan resim dosyasının adı
-            Resources.Load<Sprite>("2.png"),
-            Resources.Load<Sprite>("3.png"),
-            Resources.Load<Sprite>("4.png"),
-            Resources.Load<Sprite>("5.png"),
-            Resources.Load<Sprite>("6.png"),
-            // Eklemek istediğiniz diğer resimleri buraya ekleyebilirsiniz
-        };
-
-        // Rastgele resim gösterme işlemini başlatın
-        Debug.Log("------------1");
-        // Rastgele bir resim seçin
-        int randomIndex = Random.Range(0, imageArray.Length);
-        Sprite randomImage = imageArray[randomIndex];
-
-        // Image bileşenine seçilen resmi atayın
-        soru.GetComponent<Image>().sprite = Resources.Load<Sprite>("6.png");
-        Debug.Log("burada");
-    }
-    */
-
-    void SoruyuSor()
-    {
-        imageArray = new Sprite[]
-        {
-            Resources.Load<Sprite>("1.png"), // Resim1, Resources klasöründe bulunan resim dosyasının adı
-            Resources.Load<Sprite>("2.png"),
-            Resources.Load<Sprite>("3.png"),
-            Resources.Load<Sprite>("4.png"),
-            Resources.Load<Sprite>("5.png"),
-            Resources.Load<Sprite>("6.png"),
-            // Eklemek istediğiniz diğer resimleri buraya ekleyebilirsiniz
-        };
-
-        // Rastgele bir resim seçin
-        int randomIndex = Random.Range(0, imageArray.Length);
-        Sprite randomImage = imageArray[randomIndex];
-
-        // Image bileşenine seçilen resmi atayın
-        soru.GetComponent<Image>().sprite = Resources.Load<Sprite>("6.png");
-        Debug.Log("burada");
-    }
+    
 }
