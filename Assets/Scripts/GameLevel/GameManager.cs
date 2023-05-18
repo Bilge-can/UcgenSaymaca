@@ -27,14 +27,20 @@ public class GameManager : MonoBehaviour
     
     List<int> UcgenDegerleriListesi = new List<int>();
 
+    int kacinciSoru;
+    int dogruSonuc;
     int butonDegeri;
+    bool butonaBasilsinmi;
 
     void Start()
     {
+        butonaBasilsinmi = false;
+
         soruPaneli.GetComponent<RectTransform>().localScale = Vector3.zero;
 
         kareleriOlustur();
-        
+        //SoruyuSor();
+
     }
 
     
@@ -58,9 +64,28 @@ public class GameManager : MonoBehaviour
 
      void ButonaBasildi()
     {
-        butonDegeri = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().text);
-        Debug.Log(butonDegeri);
+        if (butonaBasilsinmi)
+        {
+            butonDegeri = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().text);
+
+            
+            SonucuKontrolEt();
+            
+        }
     }
+
+    void SonucuKontrolEt()
+    {
+        if (butonDegeri>13)
+        {
+            Debug.Log("Doğru Sonuç");
+        }
+        else 
+        {
+            Debug.Log("Yanlış Sonuç");
+        }
+    }
+
 
 
     IEnumerator DoFadeRoutine()
@@ -79,7 +104,7 @@ public class GameManager : MonoBehaviour
     {
         foreach(var kare in karelerDizisi)
         {
-            int rastgeleDeger = Random.Range(12,35);
+            int rastgeleDeger = Random.Range(1,40);
 
             UcgenDegerleriListesi.Add(rastgeleDeger);
 
@@ -91,11 +116,18 @@ public class GameManager : MonoBehaviour
 
     void SoruPaneliniAc()
     {
-        
+        butonaBasilsinmi = true;
         soruPaneli.GetComponent<RectTransform>().DOScale(1, 0.3f).SetEase(Ease.OutBack);
     }
 
-    
+    /*
+    void SoruyuSor()
+    {
+       // kacinciSoru = Random.Range(0, UcgenDegerleriListesi.Count);
 
-    
+        dogruSonuc = UcgenDegerleriListesi[Random.Range(0, UcgenDegerleriListesi.Count)];
+            
+    }*/
+
+
 }

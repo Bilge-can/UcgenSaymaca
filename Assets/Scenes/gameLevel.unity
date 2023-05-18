@@ -249,8 +249,6 @@ MonoBehaviour:
   soruImage: {fileID: 643452498}
   soruPaneli: {fileID: 121126457}
   soruGameObject: {fileID: 643452496}
-  soru: {fileID: 643452498}
-  imageArray: []
 --- !u!1 &419068403
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +478,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 481062d0918bd4cd5817cd93ca4b2cb0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
