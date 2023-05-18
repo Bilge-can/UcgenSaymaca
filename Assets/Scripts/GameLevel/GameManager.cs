@@ -110,7 +110,16 @@ public class GameManager : MonoBehaviour
             gecerliKare.transform.GetComponent<Button>().interactable = false;
 
             puanManager.PuaniArtir(sorununZorlukDerecesi);
-            
+
+            if (butonDegeri > 13)
+            {
+                SoruPaneliniAc();
+            }
+            else
+            {
+                OyunBitti();
+            }
+
         }
         else 
         {
@@ -119,6 +128,12 @@ public class GameManager : MonoBehaviour
             gecerliKare.transform.GetComponent<Button>().interactable = false;
             kalanHak--;
             KalanHaklarManager.KalanHaklariKontrolEt(kalanHak);
+        }
+        
+
+        if (kalanHak <= 0)
+        {
+            OyunBitti();
         }
     }
 
@@ -136,6 +151,11 @@ public class GameManager : MonoBehaviour
             sorununZorlukDerecesi = "zor";
         }
 
+    }
+
+    void OyunBitti()
+    {
+        Debug.Log("oyun bitti");
     }
 
     IEnumerator DoFadeRoutine()
